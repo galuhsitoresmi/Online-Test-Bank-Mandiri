@@ -5,9 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.common.di.ViewModelKey
 import com.example.common.di.ViewModelProviderFactory
+import com.example.newsapptestmandiri.activity.article_details.ArticleDetailsActivity
 import com.example.newsapptestmandiri.activity.category.CategoryActivity
+import com.example.newsapptestmandiri.activity.everything.EverythingActivity
 import com.example.newsapptestmandiri.activity.sources.SourcesActivity
 import com.example.newsapptestmandiri.view_model.CategoryViewModel
+import com.example.newsapptestmandiri.view_model.EverythingViewModel
 import com.example.newsapptestmandiri.view_model.SourcesViewModel
 import dagger.Binds
 import dagger.Module
@@ -35,6 +38,17 @@ abstract class ViewModelFactoryModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSourceActivity(): SourcesActivity
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EverythingViewModel::class)
+    abstract fun bindEverythingViewModel(everythingViewModel: EverythingViewModel) : ViewModel
+
+    @ContributesAndroidInjector
+    abstract fun contributeEverythingActivity(): EverythingActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeArticleDetailsActivity() : ArticleDetailsActivity
 
 
 

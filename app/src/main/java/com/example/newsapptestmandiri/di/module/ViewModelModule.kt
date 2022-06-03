@@ -2,8 +2,10 @@ package com.example.newsapptestmandiri.di.module
 
 import android.app.Application
 import com.example.api_service.usecase.CategoryUseCase
+import com.example.api_service.usecase.EverythingPagingUseCase
 import com.example.api_service.usecase.SourcesUseCase
 import com.example.newsapptestmandiri.view_model.CategoryViewModel
+import com.example.newsapptestmandiri.view_model.EverythingViewModel
 import com.example.newsapptestmandiri.view_model.SourcesViewModel
 import dagger.Module
 import dagger.Provides
@@ -24,6 +26,13 @@ class ViewModelModule {
                                 sourcesUseCase: SourcesUseCase
     ): SourcesViewModel {
         return SourcesViewModel(application, sourcesUseCase)
+    }
+
+    @Provides
+    fun provideEverythingViewModel(application: DaggerApplication,
+                                   everythingPagingUseCase: EverythingPagingUseCase
+    ): EverythingViewModel {
+        return EverythingViewModel(application, everythingPagingUseCase)
     }
 
 

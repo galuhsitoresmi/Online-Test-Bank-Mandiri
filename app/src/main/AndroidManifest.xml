@@ -27,6 +27,14 @@
             android:name=".activity.sources.SourcesActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".activity.everything.EverythingActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".activity.article_details.ArticleDetailsActivity"
+            android:exported="true">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
