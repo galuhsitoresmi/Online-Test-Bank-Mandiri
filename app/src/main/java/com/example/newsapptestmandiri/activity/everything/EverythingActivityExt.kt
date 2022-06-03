@@ -13,13 +13,16 @@ fun EverythingActivity.initbinding(){
             is LoadState.Error -> {
                 binding.retryButton.visibility = View.VISIBLE
                 binding.recyclerEverything.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
             }
             is LoadState.NotLoading -> {
                 binding.retryButton.visibility = View.GONE
                 binding.recyclerEverything.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
         }
     }
+
 
     binding.recyclerEverything.adapter = adapter.withLoadStateFooter(loadStateAadpter)
     val selectedSources = intent.getStringArrayListExtra(EverythingActivity.Constants.EXTRA_SELECTED_SOURCES)
