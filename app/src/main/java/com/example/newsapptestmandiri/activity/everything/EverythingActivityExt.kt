@@ -8,18 +8,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 fun EverythingActivity.initbinding(){
+
     adapter.addLoadStateListener {
-        when(it.append){
-            is LoadState.Error -> {
-                binding.retryButton.visibility = View.VISIBLE
-                binding.recyclerEverything.visibility = View.GONE
-                binding.progressBar.visibility = View.GONE
-            }
-            is LoadState.NotLoading -> {
-                binding.retryButton.visibility = View.GONE
-                binding.recyclerEverything.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
-            }
+        if (it.refresh is LoadState.Error && adapter.itemCount == 0){
+            binding.retryButton.visibility = View.VISIBLE
+            binding.recyclerEverything.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
+            binding.articleSearch.visibility = View.GONE
+
+        } else if (it.refresh is LoadState.Loading && adapter.itemCount == 0){
+            binding.retryButton.visibility = View.GONE
+            binding.recyclerEverything.visibility = View.GONE
+            binding.progressBar.visibility = View.VISIBLE
+            binding.articleSearch.visibility = View.GONE
+        } else if (it.refresh is LoadState.NotLoading){
+            binding.retryButton.visibility = View.GONE
+            binding.recyclerEverything.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+            binding.articleSearch.visibility = View.VISIBLE
         }
     }
 
